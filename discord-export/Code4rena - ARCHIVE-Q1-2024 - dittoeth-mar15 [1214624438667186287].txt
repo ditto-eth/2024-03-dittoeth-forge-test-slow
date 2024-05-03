@@ -1,0 +1,1280 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q1-2024 / dittoeth-mar15
+==============================================================
+
+[03/15/2024 16:42] knownfactc4_29311 (pinned)
+👋 Hello and welcome to the audit channel for the $60,800 in USDC **DittoETH** audit!
+
+📆 Audit opens 03/15/2024 20:00 (20:00 UTC) and runs through 04/05/2024 20:00 (20:00 UTC) (21 days).
+
+Please give a warm welcome to the DittoETH team, particularly @dittoproj, who will be available for questions either here in the channel or via a PRIVATE thread in the PST timezone. 
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2024-03-dittoeth
+
+{Embed}
+https://code4rena.com/audits/2024-03-dittoeth
+DittoETH | Code4rena
+$60,800 in USDC
+15 March 8:00 PM—5 April 8:00 PM
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/c4-og-v2-8ADCD.png
+
+{Reactions}
+👍 (2) 
+
+[03/15/2024 16:42] knownfactc4_29311
+Pinned a message.
+
+
+[03/15/2024 20:02] C4 (pinned)
+**Automated Findings / Publicly Known Issues**
+
+Reminder: all [Automated Findings / Publicly Known Issues](https://github.com/code-423n4/2024-03-dittoeth#automated-findings--publicly-known-issues) are out of scope and ineligible for awards.
+
+
+[03/15/2024 20:02] itsmetechjay
+Pinned a message.
+
+
+[03/15/2024 20:10] dittoproj
+gm, looking forward to this!
+
+{Reactions}
+🚀 (4) 
+
+[03/15/2024 20:15] 0xdemonnn
+GM! 
+Hello @dittoproj , just want to make sure, does that mean there are parts of the codebase that are new and haven't been audited before? and all findings from the codehawk contest have been mitigated?
+
+
+[03/15/2024 20:19] dittoproj
+not sure if anyone participated in my last audit with codehawks, but a lot of it is building on top of that yeah
+
+
+[03/15/2024 20:19] Deleted User
+wehere exactly is ``interfaces`` dir ?  in remappings it says about ``interfaces``  but  it doesnt contain all the interfaces like  ``IRocketStorage.sol``
+
+
+[03/15/2024 20:21] Deleted User
+is  it ``contracts/interfaces/``  or there is another one with the rest of interfaces  ?
+
+
+[03/15/2024 20:21] 0xdemonnn
+great, thanks :thankyou:
+
+
+[03/15/2024 20:22] dittoproj
+not sure if everything is mitigated per se but i tried to address issues I thought were worth doing, a good amount of it is related to things brought up in the past audit! (example would be better handling a minimum ercAmount especially for a ShortRecord)
+
+{Reactions}
+👍 (2) 
+
+[03/15/2024 20:23] dittoproj
+good question, it will probably be asked a lot - hopefully I put this in the readme already but `interfaces/` is generated with a script but I tried to add that in already
+
+
+[03/15/2024 20:25] Deleted User
+``bun run interfaces-force`` ??
+
+
+[03/15/2024 20:25] dittoproj
+oh it didn't get added because it's usually in the gitignore, yes exactly
+`bun run interfaces-force` creates the folder and corresponds to potentially each file in contracts
+
+
+[03/15/2024 20:26] dittoproj
+if you are setting up the repo for the first time I would go through the steps under the tests section
+
+
+[03/15/2024 20:27] Deleted User
+i created a separate foundry folder  , the only problem was i didnt find that rocket interface
+
+
+[03/15/2024 20:27] Deleted User
+the rest is good
+
+
+[03/15/2024 20:28] surfer_05
+following the readme for setting up the project works perfectly, just follow the steps
+
+{Reactions}
+💕 
+
+[03/15/2024 20:29] dittoproj
+awesome I added a misc section for that potential interfaces issue too!
+
+
+[03/15/2024 20:31] dittoproj
+also if this is the first time you're looking at this, might want to read up on the docs which has a lot more info https://dittoeth.com/technical/concepts, should be up to date outside of the stuff i wrote in the readme
+
+
+[03/15/2024 20:37] Deleted User
+??  @dittoproj
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/1-EBDDE.png
+
+
+[03/15/2024 20:37] Deleted User
+after using ``bun run interfaces-force``
+
+
+[03/15/2024 20:38] Deleted User
+i respect all the commans before that
+
+
+[03/15/2024 20:38] Deleted User
+from the c4 page
+
+
+[03/15/2024 20:39] dittoproj
+ok i can look into it
+
+
+[03/15/2024 20:43] dittoproj
+weird, I did a newly created `git clone`, `npm i` and `npm run interfaces` and I have no issue?
+
+
+[03/15/2024 20:45] Deleted User
+i will do again, wait
+
+
+[03/15/2024 20:47] Deleted User
+finally it woked
+
+
+[03/15/2024 20:47] Deleted User
+i have the folder
+
+
+[03/15/2024 20:48] dittoproj
+ok great!
+
+
+[03/15/2024 21:04] mladenov0603
+@dittoproj Can i ask something i private?
+
+
+[03/15/2024 21:06] dittoproj
+i believe you can make a private thread? @KnownFact | C4
+
+
+[03/15/2024 21:07] knownfactc4_29311
+To make one, you just need to hit the plus sign to the left of the text bar, create thread, then check the private box and tag the user you want to talk with in the opening message.
+
+{Reactions}
+🙂 
+
+[03/15/2024 21:10] mladenov0603
+I think i do not have a permission to create a thread. I can see thread from other channels and from there i can create, but i think there's must be created one before i can do it
+
+{Reactions}
+👍 
+
+[03/15/2024 21:15] knownfactc4_29311
+@dittoproj You should be able to create them from your end if needed the same way.
+
+
+[03/15/2024 21:16] dittoproj
+ok
+
+
+[03/15/2024 22:06] 0xaman.
+i have participated there. looking to audit fine code again.
+
+{Reactions}
+💕 
+
+[03/15/2024 23:17] guy_in0xnito
+Hi why does thr c4 rsvp channel shows wrong sloc ?  For this audit ?
+
+
+[03/15/2024 23:24] knownfactc4_29311
+Apologies, scope was increased at a point prior to launch, the rsvp just needs updated.
+
+
+[03/16/2024 07:29] taner2344
+i got error on coverage tests ```2024-03-16T07:27:30.142747Z ERROR forge::runner: setUp failed reason=Could not instantiate forked environment with fork url: http://eth.drpc.org contract=0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496```
+
+
+[03/16/2024 07:46] nmirchev8
+Hey
+
+This means there are new things, right? 😄
+
+
+[03/16/2024 08:08] kmm77
+I am getting this error when running npm install
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/image-EA69C.png
+
+
+[03/16/2024 08:43] 0xsl1
+getting this error
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/image-46239.png
+
+
+[03/16/2024 08:54] 0xpranav
+because file is too large, are you running in wsl?
+
+
+[03/16/2024 08:58] 0xsl1
+yeah
+
+
+[03/16/2024 09:00] 0xpranav
+https://github.com/Cyfrin/security-and-auditing-full-course-s23/discussions/107
+
+{Embed}
+https://github.com/Cyfrin/security-and-auditing-full-course-s23/discussions/107
+`solc exited with signal: 9 (SIGKILL)` while compiling. How to comp...
+I am participating in a competitive audit and that is what I discovered: There is a terribly large amount of code in actual work, so that the compiler seems to fail. The code I am auditing is compo...
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/107-550FD
+
+{Reactions}
+🔥 (2) 
+
+[03/16/2024 09:01] 0xsl1
+thanks!
+
+{Reactions}
+🙌 
+
+[03/16/2024 11:16] 0xsorrynotsorry
+Compiling the contracts in a separate terminal (not inside the editor) while there's no open browser solved my issue before
+
+{Reactions}
+✅ (4) ⬆️ (2) 
+
+[03/16/2024 12:13] kr1s_0147
+@dittoproj how shorter generate yield ?
+
+
+[03/16/2024 12:29] 0xakira1
+@dittoproj what "uint64 filler" means in struct Order ?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/image-C377D.png
+
+
+[03/16/2024 13:21] guy_in0xnito
+Are bidders and shorters same ?
+
+
+[03/16/2024 13:23] 0xsl1
+https://dittoeth.com/overview/lifecycle
+check this out, a pretty good explanation of the overall system lifecycle
+
+
+[03/17/2024 07:24] cosine_function
+@dittoproj there are some functions missing which are mentioned in the docs and existed during the codehawks audit like for example the flagshort function mentioned in the System Lifecycle can not be found in the PrimaryLiquidationFacet (https://github.com/code-423n4/2024-03-dittoeth/blob/main/contracts/facets/PrimaryLiquidationFacet.sol)
+
+So I guess the docs were not updated to reflect the new changes?
+
+
+[03/17/2024 07:55] samuraii77
+Started a thread.
+
+
+[03/17/2024 07:59] 0xsl1
+you can see changes to the contracts in scope in the repo scope table if that helps
+
+{Reactions}
+👍 
+
+[03/17/2024 08:52] .anas_22
+Is this project sharia compliant(no usury, ....)?
+
+
+[03/17/2024 09:33] Deleted User
+this is the ``DUSD`  on mainnet that i can use in tests ?  https://etherscan.io/address/0xD177000a2BC4F4d2246F0527Ad74Fd4140e029fd
+
+{Embed}
+https://etherscan.io/address/0xD177000a2BC4F4d2246F0527Ad74Fd4140e029fd
+Asset | Address 0xD177000a2BC4F4d2246F0527Ad74Fd4140e029fd | Etherscan
+The Contract Address 0xD177000a2BC4F4d2246F0527Ad74Fd4140e029fd page allows users to view the source code, transactions, balances, and analytics for the contract address. Users can also interact and make transactions to the contract directly on Etherscan.
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/etherscan-logo-circle-A29B1.jpg
+
+
+[03/17/2024 09:46] Deleted User
+what are the mainnet addr  for ``rethBridge``  &  ``stethBridge``   ??  or where in the repo i can find the mocks for these if you can't give me the addresses
+
+
+[03/17/2024 12:30] nmirchev8
+So if future you plan to support LST different from `reth` and `steth` and their bridges  would be added to `s.bridge` mapping?
+
+
+[03/17/2024 13:49] Deleted User
+At   ``BidOrdersFacet.sol :: _createBid() ``   ->   ```        MTypes.BidMatchAlgo memory b;
+        b.askId = s.asks[asset][C.HEAD].nextId;
+        // @dev setting initial shortId to match "backwards" (See _shortDirectionHandler() below)
+        b.shortHintId = b.shortId = Asset.startingShortId;```    ,  is it correct to be 2  `` = ``   in ``b.shortHintId = b.shortId = Asset.startingShortId``  or is it a misspelling ?
+
+
+[03/17/2024 15:27] samuraii77
+If it was == then type would be bool
+
+
+[03/17/2024 17:06] mladenov0603
+Is there a actual contract of IBridge? I want to see the implemenation of functions from IBrdigle interface
+
+
+[03/17/2024 18:14] 0xwizard
+What do you mean sharia compliant?
+
+
+[03/18/2024 01:35] 00xsev
+Are all "Issues related to oracles" considered out of scope, or does this only apply to the specific case where "2 hours staleness means it can be somewhat out of date"?
+Thanks
+
+
+[03/18/2024 14:02] dittoproj
+you may need to skip the fork tests or pick a different RPC url
+
+
+[03/18/2024 14:03] dittoproj
+quick answer is yield comes from the LSTs, since you come in with an LST
+
+
+[03/18/2024 14:03] dittoproj
+filler is a placeholder in the struct, just to track how many slots
+
+
+[03/18/2024 14:04] dittoproj
+not sure what this means? what about it is the same? they are in same in some ways like both people bring in eth?
+
+
+[03/18/2024 14:04] dittoproj
+can you copy the way I did it in the other tests? maybe check remappings and the syntax you use
+
+
+[03/18/2024 14:05] dittoproj
+still in the process of cleaning up docs, at least in https://github.com/code-423n4/2024-03-dittoeth/tree/main?tab=readme-ov-file#high-level-changes it should mention what changed like flagging being removed
+
+{Reactions}
+👍 
+
+[03/18/2024 14:06] guy_in0xnito
+No no i got it 
+It was a dumb question
+Haven't seen any orderbook before so asked that
+
+But on another note since 
+Ask orders is not in scope 
+But there are some related logic to that o think in bidorders so what about those ?
+
+{Reactions}
+👍 
+
+[03/18/2024 14:08] dittoproj
+contracts are in https://dittoeth.com/contracts, but you can maybe ctrl f the existing tests to get a sense of how to write them. you shouldn't have to set up everything from scratch. I have helpers like obfixture and helper functions in testfacet/viewfacet
+
+
+[03/18/2024 14:08] dittoproj
+yes it would be rethbridge/stethbridge, i would search " is IBridge" in the codebase
+
+{Reactions}
+👍 
+
+[03/18/2024 14:09] dittoproj
+I just didn't include it to save scope but liborders and bidorders are in scope, the ask orders is just calling the helpers
+
+
+[03/18/2024 14:10] mladenov0603
+When you have time can you please check the private thread
+
+
+[03/18/2024 14:11] dittoproj
+yeah something like that, via ownerfacet.createBridge. no plans to immediately do that but diff vault can support diff kinds of lsts. currently just 2 because of potential issues around arbitrage between the 2 so probably won't have more than 2 in a single vault, or make a separate one with only that LST
+
+{Reactions}
+✅ 
+
+[03/18/2024 14:12] dittoproj
+oh yeah that was a similar issue last time, about memory - good that there's a solution!
+
+
+[03/18/2024 14:23] guy_in0xnito
+Has the prev audit findings changes made ?
+
+
+[03/18/2024 15:42] dittoproj
+for the most part yes and tried to call them out here in the changes column: https://github.com/code-423n4/2024-03-dittoeth/tree/main?tab=readme-ov-file#scope
+
+
+[03/18/2024 16:19] dittoproj
+although looking at it again, I didn't see where the flagging was mentioned, I don't see it so maybe you saw an old version since I definitely removed it - if you do see it share me a link and I can remove @Cosine
+
+
+[03/18/2024 17:10] guy_in0xnito
+So is the maximum number of orders that can be made are 65k?
+
+
+[03/18/2024 17:58] __naman_
+can someone explain what is short in this protocol ?
+
+
+[03/18/2024 19:17] dittoproj
+https://dittoeth.com/technical/ob#short-orders
+
+{Embed}
+https://dittoeth.com/technical/ob
+Orderbook | Ditto Docs (WIP)
+DittoETH protocol docs
+
+
+[03/18/2024 20:12] __naman_
+thanks
+
+
+[03/18/2024 22:09] dittoproj
+Are you asking about orders? There can be up to ~65k active limit orders at one time
+
+
+[03/19/2024 00:55] 00xsev
+@dittoproj Are all "Issues related to oracles" considered out of scope, or does this only apply to the specific case where "2 hours staleness means it can be somewhat out of date"?
+Thanks
+
+
+[03/19/2024 08:21] cosine_function
+As mentioned it is in the System Lifecycle page of the docs (https://dittoeth.com/overview/lifecycle):
+
+Shorts that have fallen below the primaryLiquidationCR must first be flagged for liquidation using flagShort in PrimaryLiquidationFacet ...
+
+
+[03/19/2024 13:58] 0xgreywolf
+Hi @dittoproj. I'm quite confused with the definition of shorting here. In traditional finance, shorting means selling an asset that is not yours (means it is borrowed). Is it the same? Or in protocol's context, are shorts just "sellers" and longs are just "buyers" and the order book matches them? Thank you.
+
+
+[03/19/2024 14:15] kartoonjoy
+Does this help? https://discord.com/channels/810916927919620096/1214624438667186287/1219364125449388182
+
+
+[03/19/2024 14:17] 0xgreywolf
+I will check. Thank you very much.
+
+{Reactions}
+hi5 
+
+[03/19/2024 14:34] dittoproj
+if you find a different issue related to the oracle yeah that's fine, depends on what it is I suppose given https://github.com/Cyfrin/2023-09-ditto/tree/a93b4276420a092913f43169a353a6198d3c21b9?tab=readme-ov-file#known-issues and other common issues
+
+{Reactions}
+🙏 
+
+[03/19/2024 14:36] dittoproj
+yeah I don't see that at all? I removed primaryLiquidationCR - is the paged cached somehow?
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/image-247AE.png
+
+
+[03/19/2024 14:37] dittoproj
+yeah that's it, you a short owes dusd? long is buying dusd with eth, asks are selling dusd
+
+{Reactions}
+👍 (2) 
+
+[03/19/2024 14:38] 0xgreywolf
+Thank you.
+
+
+[03/19/2024 14:55] cosine_function
+interesting o.O  must be cached from the codehawks contest back then
+
+
+[03/19/2024 15:03] kr1s_0147
+what is dust ?
+
+
+[03/19/2024 15:20] dittoproj
+https://dittoeth.com/technical/misc#orderbook-dust
+
+{Embed}
+https://dittoeth.com/technical/misc
+Miscellaneous | Ditto Docs (WIP)
+DittoETH protocol docs
+
+
+[03/19/2024 15:36] dittoproj
+maybe try force refresh/clear cache of that page, or maybe check github repo instead?
+
+{Reactions}
+👍 (2) 
+
+[03/19/2024 17:11] dittoproj
+https://x.com/devtooligan/status/1770113140392616299?s=20 looks helpful
+
+https://blog.trailofbits.com/2024/03/19/read-code-like-a-pro-with-our-weaudit-vscode-extension/
+
+{Reactions}
+❤️ (2) 
+
+[03/19/2024 17:13] volokinn
+thanks for sharing!
+
+{Reactions}
+🙂 
+
+[03/19/2024 19:28] noro9954
+@dittoproj in the example provided here : https://dittoeth.com/technical/ob#shorter-yield, `initialCR == 2`, 
+(1 from shorter **+** 1 from bidder), where does the other +1 come from `price * amount * (initialCR + 1)` ?
+
+{Embed}
+https://dittoeth.com/technical/ob
+Orderbook | Ditto Docs (WIP)
+DittoETH protocol docs
+
+
+[03/19/2024 21:00] dittoproj
+"The +1 is what gives the shorter extra yield for matching against a bid order, which results in 1 / initialCR extra yield."
+
+
+[03/19/2024 21:01] dittoproj
+Meaning the dusd bidder provides the +1
+
+
+[03/19/2024 21:36] mike_bello90
+ercDebt is the Dusd debt?
+
+{Reactions}
+👍 
+
+[03/20/2024 07:21] evokid
+yes sir -)
+`The shortRecord saves the amount of debt the user owes in ercDebt, as well as the current collateral.`
+https://dittoeth.com/technical/ob#shortrecord
+
+As the Debt position is the dUSD
+`This system uses an orderbook to match buy and sell sides (thus two sided) to create a stable asset. A buyer takes their ETH with the intent of getting the stable asset (dUSD, Ditto USD). A shorter takes their ETH with the intent of getting the yield of their collateral in addition to the extra collateral of the buyer as well as taking a lended sell position against USD. The orderbook model allows for the shorter to be incredibly efficient with their provided collateral.`
+https://dittoeth.com/technical/concepts#orderbook
+
+{Reactions}
+thankyou 
+
+[03/20/2024 09:47] taner2344
+i understand nothing from docs about hint , hintId , hintOrder.price ....  what is hinting? what am i providing to protocol ? a number?  @dittoproj  ???
+
+
+[03/20/2024 13:59] dittoproj
+yes, erc meaning there could be other stable assets/coins but referring to the only one currently, dusd
+
+{Reactions}
+thankyou 
+
+[03/20/2024 14:01] dittoproj
+can you be more specific about what you are confused by? I can't help you other than repeating the docs in some form
+https://dittoeth.com/technical/ob#order-hints
+the orders have to be sorted, and orders are in a mapping. it's a doubly linked list. it's expensive to sort on chain because you have to loop over x times to find the correct place to place an order based on sorted price. the hint is the id that tells the system where to place the new order
+orders are referenced by id in the mapping, so the hint tells the system where it goes
+
+{Reactions}
+👍 
+
+[03/20/2024 14:34] taner2344
+thank you
+
+
+[03/20/2024 14:35] dittoproj
+if anyone needs help with writing tests let me know as well, i setup helpers in the the current tests that you should be able to use to call things in the diamond and elsewhere, so existing tests should be a helpful guide
+
+
+[03/20/2024 17:13] guy_in0xnito
+I personally think some variables name in one place
+Since scope of the audit doesn't contain the variables
+
+
+
+
+And on other note what does 
+'accessDeth'  function mean ?
+
+
+[03/20/2024 17:17] tychaios.
+Are you referring to `assessDeth` in `LibBridgeRouter.sol`?
+
+
+[03/20/2024 17:20] guy_in0xnito
+Ya
+
+
+[03/20/2024 17:37] dittoproj
+everything in datatypes/appstorage is in scope in the sense that every file references them so i wasn't sure if that was necessary to say, but the issues should be in the logic of how they are used I would think
+
+{Reactions}
+✅ 
+
+[03/20/2024 17:38] dittoproj
+`assessDeth` is related to the feature about bridge credit/arb
+
+Fix issues related to withdrawals (see "finding-579" L-13. Instant arbitrage opportunity through rETH and stETH price discrepancy): introduce a "credit" system for when LST (rETH/stETH) is deposited to handle arbitrage between depositing and withdrawing. Users can only withdraw what type of LST they deposit with. Any extra withdrawals due to yield gain will be given based on checking the oracle price difference between the LSTs.
+
+also wrote about it here https://dittoeth.com/technical/arbitrage
+
+basically if you come in with stETH, you can take out that much stETH etc, but if you make trades or gain yield it may do extra checks. this is to deal with mixing the assets, which you are feel to disagree with or say it's not a big deal
+
+
+[03/20/2024 17:46] noro9954
+@dittoproj what this value refers to : https://github.com/code-423n4/2024-03-dittoeth/blob/main/contracts/libraries/Constants.sol#L15
+
+
+[03/20/2024 17:47] dittoproj
+oh this is bid collateral ratio, it's just a constant that refers to 100%, or 100% CR. the bid is providing 1 for 1 eth for the dusd at whatever price. the shorter can provide the other side of the collateral to make it over-collateralized
+
+
+[03/20/2024 17:52] noro9954
+can the shorter provide collateral less than initialCR and the bidder complets the remaining to reach initialCR ?
+for example` intialCR = 170`, shorter provide `70` when creating the limit short and bidder provides `100 `when the order matchs . is that possible ?
+
+{Reactions}
+👍 
+
+[03/20/2024 18:02] dittoproj
+yep you got it, https://github.com/code-423n4/2024-03-dittoeth/blob/91faf46078bb6fe8ce9f55bcb717e5d2d302d22e/contracts/facets/ShortOrdersFacet.sol#L51 if you read this part
+
+(shortOrderCR + C.BID_CR) < Asset.initialCR
+it's doing what you said, short side CR could be say 70% and bid side is 100% and it can be >= initialCR depending on how low it gets set. this is so that a shorter could provide a lot less CR
+
+{Reactions}
+👌 
+
+[03/21/2024 05:13] guy_in0xnito
+What is ethEscrowed ?
+
+
+[03/21/2024 09:27] infectedfuture
+if anyone is encountering that issue on WSL when running `bun run interfaces-force`
+
+{Attachments}
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/image-76B63.png
+
+
+[03/21/2024 09:28] infectedfuture
+just add `absPath = absPath.replace(/\r/g, '');` in `scripts/sol-to-isol/index.js` before the line where the error appears
+
+{Reactions}
+👍 (2) 
+
+[03/21/2024 12:00] lyubomira
+It seems like there are no findings from the bot race for this contest?
+
+
+[03/21/2024 13:37] evokid
+`VaultUser.ethEscrowed to hold the amount of ETH collateral per user.`
+https://dittoeth.com/technical/concepts#vault-functions
+
+
+[03/21/2024 15:49] dittoproj
+https://dittoeth.com/technical/concepts#bridges 
+internal accounting for deth
+
+
+[03/21/2024 15:50] dittoproj
+bot race wasn't funded
+
+{Reactions}
+👍 (2) 
+
+[03/21/2024 16:51] dittoproj
+yep, escrow is just for the accounting, since it's not a swap that happens immediately. there's one for each erc asset (the stablecoin dusd), and there's one for everything that is deposited via eth/reth/steth
+
+{Reactions}
+👍🏻 
+
+[03/22/2024 05:50] guy_in0xnito
+Amount of collateral dETH by shorter ?
+
+
+[03/22/2024 15:26] dittoproj
+it's just the generic variable for any collateral for any user, could be a bidder too, depends on what you want to do. it's just the variable that increases when you deposit
+
+
+[03/22/2024 20:16] samuraii77
+shorts are sorted from lowest to highest price like asks right?
+
+
+[03/22/2024 20:47] dittoproj
+yes
+
+
+[03/22/2024 20:50] mike_bello90
+what's the difference between BidMatchAlgo.matchedAskId and BidMatchAlgo.matchedShortId
+
+
+[03/22/2024 20:50] mike_bello90
+aren't these the representing the same thing?
+
+
+[03/22/2024 20:56] mike_bello90
+ask and short are the same right?
+
+
+[03/22/2024 21:58] dittoproj
+no asks and shorts are not the same thing but they are on the same side of the orderbook  (i.e. match with a bidder). but they are completely different
+
+
+[03/22/2024 21:59] dittoproj
+https://dittoeth.com/technical/ob#short-orders
+asks are when you are selling the stable asset (selling dusd)
+shorts are a debt position (you don't have the dusd, you owe it)
+
+
+[03/22/2024 22:20] mike_bello90
+oo, thank you
+
+
+[03/23/2024 15:43] kr1s_0147
+what is ercDebtRate ?
+
+
+[03/23/2024 16:56] evokid
+ercDebtRate is related to ercDebt, ercDebtRate could affect ercDebtSocialized in short records.
+
+
+[03/23/2024 16:57] kr1s_0147
+what does it actually represent ?
+
+
+[03/23/2024 18:18] mylifechangefast.eth_70767
+Why is it that when depositing into the bridge doesn't show a fee mechanism when the amount after  might be less? 
+
+Moreover when people try to withdraw which they withdraw from the bridge they have deposited it shows a fee mechanism? @dittoproj
+
+{Reactions}
+⏫ 
+
+[03/23/2024 18:53] bengillitt
+I just want to make sure, is ercAmount just the amount of a token?
+
+
+[03/23/2024 21:41] sp1cymeatball
+@dittoproj hi! What is the base oracle address?
+
+
+[03/24/2024 11:22] evokid
+`ercDebtRate: uint64 is a max of 18x. Tracks if a penalty needs to be applied across all shortRecords if the system isn't able to handle the debt.` https://dittoeth.com/technical/ob#shortrecord
+
+{Reactions}
+👍 
+
+[03/24/2024 18:45] mylifechangefast.eth_70767
+If user has LST credit but that bridge is empty, LST credit can be redeemed for the other base collateral at 1-1 ratio. I don't seem to understand this anyone who can help me explain?
+
+
+[03/25/2024 06:43] modey__
+Auditing can really be some overwhelming work! 😅😂
+
+
+[03/25/2024 07:51] devanas17
+what is dispute period in redemption?
+
+
+[03/25/2024 08:01] kr1s_0147
+you can find here. @devAnas 
+https://dittoeth.com/technical/redemptions#disputing-a-redemption
+
+{Reactions}
+thankyou 
+
+[03/25/2024 13:57] mylifechangefast.eth_70767
+Not gonna lie. Every statement in this server starts with the words "What is "
+
+
+[03/25/2024 14:32] modey__
+😂😂
+
+
+[03/25/2024 15:01] dittoproj
+thanks @evokid, yes it's a asset-wide debt increase if it's required after a liquidation cannot be covered
+
+{Reactions}
+👍🏻 
+
+[03/25/2024 15:02] dittoproj
+yes, in most cases that's what it refers to (specifically an amount of the stable coin/asset/dusd)
+
+
+[03/25/2024 15:03] dittoproj
+is the question why there isn't a fee on deposit and there is on withdraw?
+
+
+[03/25/2024 15:26] infectedfuture
+anyone knows why every time I write comments next to a line of code, it gets pushed to a new line? (even if under [fmt] line_length configured value)
+
+
+[03/25/2024 15:27] infectedfuture
+I suppose its bc of a configuration in the project
+
+
+[03/25/2024 15:28] infectedfuture
+this does not happen if its after a semi-colon though
+
+
+[03/25/2024 15:31] klau5_
+disable formatter of vscode (modify .vscode/settings.json formatOnSave formatOnPaste false)
+
+{Reactions}
+👍 
+
+[03/25/2024 16:18] dittoproj
+it might be from `forge fmt` or if you have `juanblanco.solidity` extension installed (I do), @klau5 suggestion is good, or you can change the foundry.toml line length even higher
+
+
+[03/25/2024 16:21] dittoproj
+say you deposit 10 stETH and try to withdraw 10 stETH at a later time. Normally you would receive 10 stETH fee free (since you have 10 stETH bridge credit). In the rare/unlikely case that the stETH bridge contract has no stETH remaining you would be able to withdraw 10 stETH equivalent of rETH fee free since that is the only LST remaining
+
+{Reactions}
+✅ 
+
+[03/25/2024 16:28] mylifechangefast.eth_70767
+Thanks
+
+
+[03/25/2024 20:12] infectedfuture
+@klau5 worked for me, thanks!
+
+
+[03/26/2024 16:47] bengillitt
+Are there any gas optimisation rewards for this audit?
+
+
+[03/26/2024 16:48] itsmetechjay
+There are no gas optimization rewards.
+
+
+[03/26/2024 18:26] mylifechangefast.eth_70767
+😅
+
+
+[03/26/2024 18:34] devanas17
+my pc is not supporting bun, how could i run test then
+
+
+[03/26/2024 19:43] dittoproj
+oh ok, for windows you can download a canary version but you can also just use npm instead, it's just to run js commands
+https://bun.sh/docs/installation#windows is a canary build of bun
+
+or anytime you see `bun run x` maybe `npm run x`, or just run the commands directly from package.json
+
+
+[03/26/2024 19:46] dittoproj
+I choose not to do gas because I wanted wardens to focus on security. I did a lot for gas already and don't want to prioritize smaller gas wins over security
+
+
+[03/26/2024 19:49] dittoproj
+for tests specifically you can use forge commands like `forge test`
+I left some alliases in the readme as well
+
+```
+alias t="forge test "
+alias tm="forge test --match-test "
+alias ts="forge test --match-test statefulFuzz"
+alias gm="FOUNDRY_PROFILE=gas forge build && FOUNDRY_PROFILE=testgas forge test --match-test "
+```
+
+
+[03/26/2024 19:53] dittoproj
+for anyone looking at the bridge credit system and confused about why it's there, i'd be curious to know alternatives to how to deal with arbitrage between different LSTs since the pool is mixed. seems like either you don't mix it (separate each LST like other protocols) or need to track each LST via credit
+
+
+[03/27/2024 09:21] lilizhu
+Started a thread.
+
+
+[03/27/2024 09:23] volokinn
+@lilizhu , you should make this a private thread
+
+
+[03/27/2024 09:25] lilizhu
+ok, I'm sorry, too busy to make a mistake.😂
+
+
+[03/27/2024 10:56] guy_in0xnito
+Is the 0.5 eth check for the 50%  price deviation check?
+
+
+[03/27/2024 15:22] dittoproj
+you're going to need to be more specific here, would appreciate
+
+
+[03/27/2024 15:24] guy_in0xnito
+https://dittoeth.com/technical/oracles#price-deviation
+
+{Reactions}
+👍 
+
+[03/27/2024 15:29] dittoproj
+yes 0.5 eth is the 50% check
+
+{Reactions}
+✅ 
+
+[03/28/2024 02:04] guy_in0xnito
+Then where in the code are we checking the deviation between
+Chainlink price and saved price of 0.5%?
+
+
+[03/28/2024 07:18] .0xsecuri
+Here: https://github.com/code-423n4/2024-03-dittoeth/blob/91faf46078bb6fe8ce9f55bcb717e5d2d302d22e/contracts/libraries/LibOracle.sol#L80
+
+
+[03/28/2024 08:04] .0xsecuri
+@dittoproj What is the purpose of having an oracle address in the Asset struct? The inline docs mention 'for non-USD assets,' but I'm struggling to understand how this is expected to work.
+
+
+[03/28/2024 09:35] guy_in0xnito
+Nope Asking about this 
+'difference between the match price and the cached oracle price is greater than 0.5%,'
+
+What you are talking about is this ithink 
+
+"The price deviation circuit breaker is triggered when the delta between the saved oracle price and the incoming Chainlink price is greater than 50% in either direction"
+
+
+[03/28/2024 11:17] jaimegm_
+I believe you are referring to this?  https://github.com/code-423n4/2024-03-dittoeth/blob/91faf46078bb6fe8ce9f55bcb717e5d2d302d22e/contracts/libraries/LibOrders.sol#L782-L800
+
+{Reactions}
+🫡 
+
+[03/28/2024 11:19] guy_in0xnito
+Thanks
+
+{Reactions}
+🫡 
+
+[03/28/2024 15:46] dittoproj
+baseOracle is always the ETH/USD chainlink oracle. currently the system only has a usd asset, but it allows for more assets in the future (yen, rmb, gold…etc etc). that is why each asset will have its own oracle saved into their struct, while the baseOracle is the same across all assets
+
+
+[03/28/2024 16:23] .0xsecuri
+got it, thanks!
+
+{Reactions}
+👍 
+
+[03/28/2024 17:00] .0xsecuri
+Just to clarify, these oracles will also be Chainlink oracles, right?
+
+
+[03/28/2024 17:02] .0xsecuri
+Like this one for example: https://data.chain.link/feeds/ethereum/mainnet/cny-usd
+
+
+[03/28/2024 17:25] dittoproj
+yes
+
+
+[03/28/2024 18:09] dittoproj
+but that's a future thing, other oracles have different parameters so it's known that there could be potential differences if I want to add them later
+
+
+[03/29/2024 04:32] kr1s_0147
+how could i withdraw dusd into the wallet ?
+
+
+[03/29/2024 07:39] infectedfuture
+from VaultFacet
+
+{Reactions}
+👍 
+
+[03/29/2024 08:45] mylifechangefast.eth_70767
+If the get dethValue is less than < rounding zero is it that  the steth bridge has no value or is empty?
+
+
+[03/29/2024 08:45] mylifechangefast.eth_70767
+Anyone
+
+
+[03/29/2024 16:18] dittoproj
+in the case of stETH the getDethValue call is just balanceOf, so the bridge would be empty in that case (Although for rebasing token i believe no value and empty are the same thing)
+<https://github.com/code-423n4/2024-03-dittoeth/blob/91faf46078bb6fe8ce9f55bcb717e5d2d302d22e/contracts/bridges/BridgeSteth.sol#L49>
+
+
+[03/29/2024 16:54] alchmy952
+@dittoproj Is there any specific threshold for highestBid.price in LibOrders.sol?
+
+
+[03/29/2024 17:02] dittoproj
+do you have an example of what you mean?
+
+
+[03/29/2024 17:10] alchmy952
+https://github.com/code-423n4/2024-03-dittoeth//blob/main/contracts/libraries/LibOrders.sol#L713
+
+
+[03/29/2024 17:11] dittoproj
+and what do you mean by threshold? like a limit on what the price can be?
+
+
+[03/29/2024 18:29] alchmy952
+Yes
+
+
+[03/29/2024 18:59] dittoproj
+there isn't a limit on price per se, it is expected to have one?
+that would be limited by a person's ethEscrowed (if price is too high, they wouldn't have enough eth), and ShortOrders only match at oracle price
+
+
+[03/29/2024 22:07] alchmy952
+For the sake of clarity, why wouldn't they have enough Eth if the price is too high?
+
+
+[03/30/2024 17:29] dittoproj
+it depends on the ercAmount
+
+
+[03/30/2024 23:08] mike_bello90
+guys what's forcedBidPriceBuffer ?
+
+
+[03/30/2024 23:09] mike_bello90
+in the asset and in the primary liquidation
+
+
+[03/31/2024 10:47] modey__
+hello @dittoproj . Please can you drop some insight on bridge credits ? is bridgecreditReth the amount of Reth a vault user has deposited?
+
+
+[04/01/2024 02:19] dittoproj
+were you able to look at https://dittoeth.com/technical/arbitrage? kind of, the short of it is that if you deposit either lst you get that credit and when you withdraw it removes it but there's more to it
+
+
+[04/01/2024 02:20] dittoproj
+this is in a liquidation, need to leave some room to make sure the ShortRecord can be exited, so the price is higher than usual, otherwise it might not be matched
+```
+        // @dev Provide higher price to better ensure it can fully fill the liquidation
+        uint80 _bidPrice = m.oraclePrice.mulU80(m.forcedBidPriceBuffer);
+```
+
+{Reactions}
+thankyou 
+
+[04/01/2024 07:40] evokid
+Much appreciation to @dittoproj for answering most of the questions, it is not easy since the contest is standing for 20 days and many wardens are participating. Thank you 🫡 (add to this the protocol concept and base code are very expanded)
+
+{Reactions}
+👍 (3) 🙂 
+
+[04/03/2024 12:36] mylifechangefast.eth_70767
+How?
+
+
+[04/03/2024 12:37] mylifechangefast.eth_70767
+@evokid true, thanks to you too!
+
+{Reactions}
+🙏🏻 
+
+[04/03/2024 14:43] .0xsecuri
+@dittoproj, is the s.assets[asset].oracle for USD asset again Chainlink's ETH/USD oracle?
+
+
+[04/03/2024 15:23] dittoproj
+no, i would check the datatypes https://github.com/code-423n4/2024-03-dittoeth/blob/91faf46078bb6fe8ce9f55bcb717e5d2d302d22e/contracts/libraries/DataTypes.sol#L121
+this is unused at the moment but there's a placeholder spot for other oracles in the future if the system adds other assets. this is under "asset" so it makes sense the oracle would be for that asset
+
+https://github.com/code-423n4/2024-03-dittoeth/blob/91faf46078bb6fe8ce9f55bcb717e5d2d302d22e/contracts/libraries/AppStorage.sol#L14 the baseOracle is the eth/usd oracle
+
+
+[04/03/2024 17:34] .0xsecuri
+Thanks!
+
+
+[04/03/2024 19:24] 0xbepresent
+@dittoproj why in "partial liquidation" the leftover short is absorbed by TAPP? What is the purpose of having TAPP absorb the surplus? Can't it be left as it is for others to finish liquidating?
+
+
+[04/04/2024 15:25] dittoproj
+that only happens when the loseCollateral condition is met bc of low CR: <https://github.com/code-423n4/2024-03-dittoeth/blob/91faf46078bb6fe8ce9f55bcb717e5d2d302d22e/contracts/facets/PrimaryLiquidationFacet.sol#L263>
+
+when SR is under the penaltyCR the shorter is dangerously close to (or already) undercollateralization so the TAPP assumes the risky debt and consolidates it into one place to make liquidations easier.
+
+{Reactions}
+👍 
+
+[04/05/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens The **DittoETH** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Keep an eye on #📢announcements for regular updates on how the audit is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping a Contest-Admin if you have questions along the way!
+
+{Reactions}
+🎉 (3) 
+
+[04/05/2024 22:00] 0xaman.
+oh shit miss the deadline again
+
+{Reactions}
+👀 (2) 
+
+[04/05/2024 22:57] maxwell4426
+How many submissions?
+
+
+[04/05/2024 23:05] kaveyjoe
+273😀
+
+{Reactions}
+🫡 (4) 
+
+[04/06/2024 05:57] infectedfuture
+thats really low compared to its duration :o
+
+{Reactions}
+😆 
+
+[04/06/2024 20:24] mylifechangefast.eth_70767
+Yes
+
+
+[04/06/2024 20:24] mylifechangefast.eth_70767
+People didn't participate that much 😂
+
+{Reactions}
+😂 (2) 😓 
+
+[04/11/2024 08:54] mylifechangefast.eth_70767
+https://tenor.com/view/hhhhomeboyyyy-gianluca-me-reading-wtf-gif-21273156
+
+{Embed}
+https://tenor.com/view/hhhhomeboyyyy-gianluca-me-reading-wtf-gif-21273156
+Code4rena - ARCHIVE-Q1-2024 - dittoeth-mar15 [1214624438667186287].txt_Files/hhhhomeboyyyy-gianluca-54010.png
+
+{Reactions}
+😂 (2) 
+
+[04/11/2024 08:55] mylifechangefast.eth_70767
+POV: Judges after coming across a finding in the past report.
+
+
+[04/11/2024 10:57] maxwell4426
+For those with backstage access. How is the judging going?
+
+
+[04/11/2024 13:01] alchmy952
+I'm second asking too
+
+
+[04/12/2024 09:35] infectedfuture
+sponsor finished to review findings and judge started, so might take some additional 2-3 weeks I would say with PJQA
+
+{Reactions}
+✅ (5) 
+
+[04/15/2024 17:07] mylifechangefast.eth_70767
+:4739_Skeletor:
+
+
+[04/19/2024 09:08] hansfriese
+@dittoproj Would you accept my friend request?
+
+{Reactions}
+👍 
+
+[04/22/2024 20:17] thebrittfactor
+🤑 🎉  Awards for **DittoETH**:
+
+$7,224.33 USDC » @klau5 
+$6,433.01 USDC » @nonseodion 
+$6,092.51 USDC » @00xSEV 
+$6,092.51 USDC » @d3e4 
+$5,209.09 USDC » @Cosine 
+$4,573.16 USDC » @serial-coder 
+$3,392.30 USDC » @0xbepresent 
+$2,741.63 USDC » @samuraii77 
+$1,975.19 USDC » @infect3d 
+$1,332.61 USDC » @ilchovski 
+$511.48 USDC » @Bube 
+$474.51 USDC » @unix515 
+$428.40 USDC » @Albahaca 
+$404.17 USDC » @Rhaydden 
+$379.61 USDC » @maxim371 
+$307.67 USDC » @popeye 
+$249.25 USDC » @hihen 
+$236.67 USDC » @Sathish9098 
+$236.67 USDC » @hunter_w3b 
+$236.67 USDC » roguereggiant  
+$191.73 USDC » Pechenite (@bozho and @radev_sw) 
+$191.73 USDC » @oualidpro 
+$191.73 USDC » @slvDev 
+$109.28 USDC » @0xCinghiale 
+$102.05 USDC » @0xSecuri 
+$91.81 USDC » @Lin 
+$91.81 USDC » @foxb868 
+$67.25 USDC » @evokid 
+$67.25 USDC » @XDZIBECX 
+$60.02 USDC » @Bigsam 
+$42.03 USDC » @Bauchibred 
+$24.56 USDC » @0xbrett8571 
+$24.56 USDC » @jcfichtner 
+$24.56 USDC » @SAQ 
+$24.56 USDC » clara  
+$24.56 USDC » @emerald7017 
+$24.56 USDC » @Fouzantanveer 
+$24.56 USDC » @kaveyjoe 
+$17.99 USDC » @Rolezn 
+$17.99 USDC » @Topmark 
+$17.99 USDC » @caglankaan 
+$17.99 USDC » @cheatc0d3 
+$17.99 USDC » @pfapostol
+
+🏁 Findings summary
+-------------------------------------
+
+{Reactions}
+🔥 (12) 4739_Skeletor (3) 
+
+[04/22/2024 20:17] thebrittfactor
+High risk findings: 7 unique (13 total)
+Med risk findings: 9 unique (29 total)
+QA reports: 18 (Best: hihen)
+Advanced analysis reports: 15 (Best: popeye)
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+
+[04/23/2024 08:32] daniel526
+congratulations @nonseodion
+
+{Reactions}
+❤️ (2) thankyou 
+
+[04/23/2024 08:45] 0xepley
+Congrats @Fouzantanveer
+
+{Reactions}
+❤️ 
+
+[04/23/2024 09:33] stormreckson
+Congrats all 🎉
+
+
+[04/23/2024 09:35] bigsam0831
+Congratulations everyone
+
+
+[04/23/2024 14:02] ilchovski
+gg
+
+
+[04/23/2024 14:47] stockmart
+Started a thread.
+
+
+[05/03/2024 15:27] itsmetechjay
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted on Friday, 10 May 2024.  Please make sure to grab anything you might need before then.
+
+
+==============================================================
+Exported 237 message(s)
+==============================================================
