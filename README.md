@@ -1,8 +1,13 @@
+# setup
+
 ```sh
 bun install
 forge build # committed pre-built files in /foundry to git
 forge test
 ```
+
+> https://github.com/ditto-eth/2024-03-dittoeth-forge-test-slow/blob/39982825f2e2f78424f5562dc83e9f102a4175e0/deploy/DeployHelper.sol#L272
+`deployCode("steth.sol")` -> `deployCode("foundry/artifacts/steth.sol/steth.json")`
 
 ```
 foundryup -v nightly-f625d0fa7c51e65b4bf1e8f7931cd1c6e2e285e9
