@@ -5,8 +5,6 @@
 
 # generated
 node_modules
-/foundry
-/interfaces
 /renamed
 .forge-snapshots
 .deploy-snapshots

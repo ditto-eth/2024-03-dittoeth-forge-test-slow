@@ -1,3 +1,17 @@
+```sh
+bun install
+forge build # committed pre-built files in /foundry to git
+forge test
+```
+
+```
+foundryup -v nightly-f625d0fa7c51e65b4bf1e8f7931cd1c6e2e285e9
+Ran 53 test suites in 1.05s (9.18s CPU time): 898 tests passed, 0 failed, 0 skipped (898 total tests)
+
+foundryup -v nightly-cafc2606a2187a42b236df4aa65f4e8cdfcea970
+Ran 53 test suites in 8.35s (8.40s CPU time): 898 tests passed, 0 failed, 0 skipped (898 total tests)
+```
+
 # DittoETH audit details
 
 - Total Prize Pool: $60,800 in USDC

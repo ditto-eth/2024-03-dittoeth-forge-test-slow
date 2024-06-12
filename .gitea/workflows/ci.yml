@@ -28,7 +28,7 @@ jobs:
       - name: Install Foundry
         uses: https://github.com/foundry-rs/foundry-toolchain@v1.1.0
         with:
-          version: nightly-5b7e4cb3c882b28f3c32ba580de27ce7381f415a
+          version: nightly-f625d0fa7c51e65b4bf1e8f7931cd1c6e2e285e9
           cache: true
 
       - name: Build contracts

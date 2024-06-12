@@ -269,15 +269,15 @@ contract DeployHelper is Test {
     function deployContracts(address _owner, uint256 chainId) internal {
         if (chainId == 31337) {
             //mocks
-            _immutableCreate2Factory = deployCode("ImmutableCreate2Factory.sol");
+            _immutableCreate2Factory = deployCode("foundry/artifacts/ImmutableCreate2Factory.sol/ImmutableCreate2Factory.json");
 
             if (isMock) {
-                _steth = deployCode("STETH.sol");
-                _unsteth = deployCode("UNSTETH.sol", abi.encode(_steth));
-                _reth = deployCode("RocketTokenRETH.sol");
-                _rocketStorage = deployCode("RocketStorage.sol", abi.encode(_reth));
+                _steth = deployCode("foundry/artifacts/STETH.sol/STETH.json");
+                _unsteth = deployCode("foundry/artifacts/UNSTETH.sol/UNSTETH.json", abi.encode(_steth));
+                _reth = deployCode("foundry/artifacts/RocketTokenRETH.sol/RocketTokenRETH.json");
+                _rocketStorage = deployCode("foundry/artifacts/RocketStorage.sol/RocketStorage.json", abi.encode(_reth));
                 reth = IRocketTokenRETH(_reth);
-                _ethAggregator = deployCode("MockAggregatorV3.sol");
+                _ethAggregator = deployCode("foundry/artifacts/MockAggregatorV3.sol/MockAggregatorV3.json");
                 rocketStorage = IRocketStorage(_rocketStorage);
                 rocketStorage.setDeposit(_reth);
                 rocketStorage.setReth(_reth);
@@ -288,7 +288,7 @@ contract DeployHelper is Test {
                 _steth = address(0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84);
                 _unsteth = address(0x889edC2eDab5f40e902b864aD4d7AdE8E412F9B1);
                 _rocketStorage = address(0x1d8f8f00cfa6758d7bE78336684788Fb0ee0Fa46);
-                _ethAggregator = deployCode("MockAggregatorV3.sol");
+                _ethAggregator = deployCode("foundry/artifacts/MockAggregatorV3.sol/MockAggregatorV3.json");
             }
         } else if (chainId == 1) {
             _immutableCreate2Factory = address(0x0000000000FFe8B47B3e2130213B802212439497);
@@ -313,7 +313,8 @@ contract DeployHelper is Test {
 
         bytes32 salt = bytes32(0);
 
-        _diamondCut = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("DiamondCutFacet.sol:DiamondCutFacet")));
+        _diamondCut =
+            factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/DiamondCutFacet.sol/DiamondCutFacet.json")));
 
         salt = 0x00000000000000000000000000000000000000005272369be7612000004a33fd;
 
@@ -327,66 +328,96 @@ contract DeployHelper is Test {
         //Tokens
         _deth = factory.safeCreate2(
             0x00000000000000000000000000000000000000008b5840c757a12000007ca931,
-            abi.encodePacked(vm.getCode("Asset.sol:Asset"), abi.encode(_diamond, "Ditto ETH", "DETH"))
+            abi.encodePacked(vm.getCode("foundry/artifacts/Asset.sol/Asset.json"), abi.encode(_diamond, "Ditto ETH", "DETH"))
         );
 
         _ditto = factory.safeCreate2(
             0x0000000000000000000000000000000000000000d7cd33daa1d61000005fb55f,
-            abi.encodePacked(vm.getCode("Ditto.sol:Ditto"), abi.encode(_diamond, _owner))
+            abi.encodePacked(vm.getCode("foundry/artifacts/Ditto.sol/Ditto.json"), abi.encode(_diamond, _owner))
         );
 
         _dusd = factory.safeCreate2(
             0x00000000000000000000000000000000000000008458c43e4f5a5800007b8f59,
-            abi.encodePacked(vm.getCode("Asset.sol:Asset"), abi.encode(_diamond, "Ditto USD", "DUSD"))
+            abi.encodePacked(vm.getCode("foundry/artifacts/Asset.sol/Asset.json"), abi.encode(_diamond, "Ditto USD", "DUSD"))
         );
 
         //Bridges
         _bridgeReth = factory.safeCreate2(
-            salt, abi.encodePacked(vm.getCode("BridgeReth.sol:BridgeReth"), abi.encode(_rocketStorage, _diamond))
+            salt,
+            abi.encodePacked(vm.getCode("foundry/artifacts/BridgeReth.sol/BridgeReth.json"), abi.encode(_rocketStorage, _diamond))
         );
         _bridgeSteth = factory.safeCreate2(
-            salt, abi.encodePacked(vm.getCode("BridgeSteth.sol:BridgeSteth"), abi.encode(_steth, _unsteth, _diamond))
+            salt,
+            abi.encodePacked(
+                vm.getCode("foundry/artifacts/BridgeSteth.sol/BridgeSteth.json"), abi.encode(_steth, _unsteth, _diamond)
+            )
         );
 
         //Facets
-        _diamondLoupe = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("DiamondLoupeFacet.sol:DiamondLoupeFacet")));
-        _ownerFacet = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("OwnerFacet.sol:OwnerFacet")));
-        _viewFacet = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("ViewFacet.sol:ViewFacet"), abi.encode(_dusd)));
+        _diamondLoupe = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/DiamondLoupeFacet.sol/DiamondLoupeFacet.json"))
+        );
+        _ownerFacet = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/OwnerFacet.sol/OwnerFacet.json")));
+        _viewFacet = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/ViewFacet.sol/ViewFacet.json"), abi.encode(_dusd))
+        );
 
         if (chainId == 31337) {
-            _yield =
-                factory.safeCreate2(salt, abi.encodePacked(vm.getCode("YieldFacet.sol:YieldFacet"), abi.encode(_ditto, 6 ether)));
+            _yield = factory.safeCreate2(
+                salt, abi.encodePacked(vm.getCode("foundry/artifacts/YieldFacet.sol/YieldFacet.json"), abi.encode(_ditto, 6 ether))
+            );
         } else {
-            _yield =
-                factory.safeCreate2(salt, abi.encodePacked(vm.getCode("YieldFacet.sol:YieldFacet"), abi.encode(_ditto, 2 ether)));
+            _yield = factory.safeCreate2(
+                salt, abi.encodePacked(vm.getCode("foundry/artifacts/YieldFacet.sol/YieldFacet.json"), abi.encode(_ditto, 2 ether))
+            );
         }
-        _vaultFacet = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("VaultFacet.sol:VaultFacet"), abi.encode(_deth)));
+        _vaultFacet = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/VaultFacet.sol/VaultFacet.json"), abi.encode(_deth))
+        );
         _bridgeRouter = factory.safeCreate2(
-            salt, abi.encodePacked(vm.getCode("BridgeRouterFacet.sol:BridgeRouterFacet"), abi.encode(_bridgeReth, _bridgeSteth))
+            salt,
+            abi.encodePacked(
+                vm.getCode("foundry/artifacts/BridgeRouterFacet.sol/BridgeRouterFacet.json"), abi.encode(_bridgeReth, _bridgeSteth)
+            )
         );
-        _shortRecord =
-            factory.safeCreate2(salt, abi.encodePacked(vm.getCode("ShortRecordFacet.sol:ShortRecordFacet"), abi.encode(_dusd)));
-        _askOrders = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("AskOrdersFacet.sol:AskOrdersFacet")));
-        _shortOrders = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("ShortOrdersFacet.sol:ShortOrdersFacet")));
-        _bidOrders = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("BidOrdersFacet.sol:BidOrdersFacet")));
-        _orders = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("OrdersFacet.sol:OrdersFacet")));
-        _exitShort = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("ExitShortFacet.sol:ExitShortFacet"), abi.encode(_dusd)));
+        _shortRecord = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/ShortRecordFacet.sol/ShortRecordFacet.json"), abi.encode(_dusd))
+        );
+        _askOrders =
+            factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/AskOrdersFacet.sol/AskOrdersFacet.json")));
+        _shortOrders =
+            factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/ShortOrdersFacet.sol/ShortOrdersFacet.json")));
+        _bidOrders =
+            factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/BidOrdersFacet.sol/BidOrdersFacet.json")));
+        _orders = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/OrdersFacet.sol/OrdersFacet.json")));
+        _exitShort = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/ExitShortFacet.sol/ExitShortFacet.json"), abi.encode(_dusd))
+        );
         _liquidatePrimary = factory.safeCreate2(
-            salt, abi.encodePacked(vm.getCode("PrimaryLiquidationFacet.sol:PrimaryLiquidationFacet"), abi.encode(_dusd))
+            salt,
+            abi.encodePacked(
+                vm.getCode("foundry/artifacts/PrimaryLiquidationFacet.sol/PrimaryLiquidationFacet.json"), abi.encode(_dusd)
+            )
         );
-        _liquidateSecondary =
-            factory.safeCreate2(salt, abi.encodePacked(vm.getCode("SecondaryLiquidationFacet.sol:SecondaryLiquidationFacet")));
-        _marketShutdown = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("MarketShutdownFacet.sol:MarketShutdownFacet")));
+        _liquidateSecondary = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/SecondaryLiquidationFacet.sol/SecondaryLiquidationFacet.json"))
+        );
+        _marketShutdown = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/MarketShutdownFacet.sol/MarketShutdownFacet.json"))
+        );
 
-        _twapFacet = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("TWAPFacet.sol:TWAPFacet")));
+        _twapFacet = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/TWAPFacet.sol/TWAPFacet.json")));
 
-        _erc721 = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("ERC721Facet.sol:ERC721Facet")));
+        _erc721 = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("foundry/artifacts/ERC721Facet.sol/ERC721Facet.json")));
 
-        _redemption =
-            factory.safeCreate2(salt, abi.encodePacked(vm.getCode("RedemptionFacet.sol:RedemptionFacet"), abi.encode(_dusd)));
+        _redemption = factory.safeCreate2(
+            salt, abi.encodePacked(vm.getCode("foundry/artifacts/RedemptionFacet.sol/RedemptionFacet.json"), abi.encode(_dusd))
+        );
 
         if (chainId == 31337) {
-            _testFacet = factory.safeCreate2(salt, abi.encodePacked(vm.getCode("TestFacet.sol:TestFacet"), abi.encode(_dusd)));
+            _testFacet = factory.safeCreate2(
+                salt, abi.encodePacked(vm.getCode("foundry/artifacts/TestFacet.sol/TestFacet.json"), abi.encode(_dusd))
+            );
 
             assertNotEq(_deth, address(0));
             assertNotEq(_dusd, address(0));

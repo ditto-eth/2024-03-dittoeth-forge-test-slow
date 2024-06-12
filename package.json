@@ -3,8 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "workspaces": [
-    "frontend",
-    "ditto-eth-subgraph",
     "scripts/sol-to-isol"
   ],
   "scripts": {
@@ -55,8 +53,7 @@
     "@openzeppelin-v5/contracts": "npm:@openzeppelin/contracts@^5.0.1",
     "@openzeppelin/contracts": "^4.9.0",
     "@prb/math": "^4.0.1",
-    "ds-test": "github:dapphub/ds-test",
-    "forge-std": "github:foundry-rs/forge-std#v1.7.4",
+    "@dittoeth/forge-std": "0.0.1",
     "solmate": "^6.2.0"
   }
 }
